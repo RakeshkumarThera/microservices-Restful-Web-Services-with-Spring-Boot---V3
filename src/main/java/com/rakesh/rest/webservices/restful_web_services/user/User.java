@@ -1,19 +1,24 @@
 package com.rakesh.rest.webservices.restful_web_services.user;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 import java.util.Locale;
 
 public class User {
 
     private Integer id;
+    @Size(min = 2, message = "Name should have at least two characters")
     private String name;
-    private LocalDate bithDate;
+    @Past(message = "birthdate should be in the past")
+    private LocalDate birthDate;
 
-    public User(Integer id, String name, LocalDate bithDate) {
+    public User(Integer id, String name, LocalDate birthDate) {
         super();
         this.id = id;
         this.name = name;
-        this.bithDate = bithDate;
+        this.birthDate = birthDate;
     }
 
     public Integer getId() {
@@ -33,11 +38,11 @@ public class User {
     }
 
     public LocalDate getBithDate() {
-        return bithDate;
+        return birthDate;
     }
 
-    public void setBithDate(LocalDate bithDate) {
-        this.bithDate = bithDate;
+    public void setBithDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override
@@ -45,7 +50,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", bithDate=" + bithDate +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }
